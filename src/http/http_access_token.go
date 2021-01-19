@@ -14,14 +14,14 @@ type accessTokenHandler struct {
 	service access_token.Service
 }
 
-func NewHandler(service access_token.Service) AccessTokenHandler {
+func NewAccessTokenHandler(service access_token.Service) AccessTokenHandler {
 	return &accessTokenHandler{
 		service: service,
 	}
 }
 
-func (h *accessTokenHandler) GetById(c *gin.Context) {
-	accessToken, err := h.service.GetById(c.Param("access_token_id"))
+func (handler *accessTokenHandler) GetById(c *gin.Context) {
+	accessToken, err := handler.service.GetById(c.Param("access_token_id"))
 	if err != nil {
 		c.JSON(err.Status, err)
 		return
