@@ -14,6 +14,8 @@ var (
 func StartApplication() {
 
 	atHandler := http.NewAccessTokenHandler(access_token.NewService(db.NewRepository()))
+	router.POST("/oauth/access_token", atHandler.Create)
 	router.GET("/oauth/access_token/:access_token_id", atHandler.GetById)
 	router.Run("127.0.0.1:8080")
+
 }
